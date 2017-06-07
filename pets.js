@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use strict';
 
 const fs = require('fs');
@@ -6,11 +5,6 @@ const path = require('path');
 const petsPath = path.join(__dirname, 'pets.json')
 
 const cmd = process.argv[2];
-
-=======
-var fs = require('fs');
-var cmd = process.argv[2];
->>>>>>> express_server
 
 if (cmd === 'read') {
   fs.readFile(petsPath, 'utf8', function(err, data) {
