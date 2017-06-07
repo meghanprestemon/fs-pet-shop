@@ -40,22 +40,6 @@ app.get('/pets', function(req, res) {
   });
 });
 
-app.get('/pets/:id', function(req, res) {
-  fs.readFile(petsPath, function(err, petsJSON) {
-    throwError(err);
-
-    let pets = JSON.parse(petsJSON);
-    let id = Number.parseInt(req.params.id);
-
-    if(id < 0 || id > pets.length || Number.isNaN(id)) {
-      return res.sendStatus(404);
-    }
-
-    res.set('Content-Type', 'text/plain');
-    res.send(pets[id]);
-  });
-});
-
 app.post('/pets/', function(req, res) {
   fs.readFile(petsPath, function(err, petsJSON) {
     throwError(err);
@@ -77,6 +61,22 @@ app.post('/pets/', function(req, res) {
       res.set('Content-Type', 'text/plain');
       res.send(pet);
     });
+  });
+});
+
+app.get('/pets/:id', function(req, res) {
+  fs.readFile(petsPath, function(err, petsJSON) {
+    throwError(err);
+
+    let pets = JSON.parse(petsJSON);
+    let id = Number.parseInt(req.params.id);
+
+    if(id < 0 || id > pets.length || Number.isNaN(id)) {
+      return res.sendStatus(404);
+    }
+
+    res.set('Content-Type', 'text/plain');
+    res.send(pets[id]);
   });
 });
 
