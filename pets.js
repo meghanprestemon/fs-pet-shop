@@ -1,10 +1,14 @@
-#!/usr/bin/env node
+'use strict';
 
-var fs = require('fs');
-var cmd = process.argv[2];
+const fs = require('fs');
+const path = require('path');
+const petsPath = path.join(__dirname, 'pets.json')
+
+const cmd = process.argv[2];
+
 
 if (cmd === 'read') {
-  fs.readFile('./pets.json', 'utf8', function(err, data) {
+  fs.readFile(petsPath, 'utf8', function(err, data) {
     if (err) {
       throw err;
     }
@@ -24,7 +28,7 @@ if (cmd === 'read') {
   });
 }
 else if (cmd === "create") {
-  fs.readFile('./pets.json', 'utf8', function(readErr, data) {
+  fs.readFile(petsPath, 'utf8', function(readErr, data) {
     if (readErr) {
       throw readErr;
     }
@@ -45,7 +49,7 @@ else if (cmd === "create") {
 
     var petsJSON = JSON.stringify(pets);
 
-    fs.writeFile('./pets.json', petsJSON, function(writeErr) {
+    fs.writeFile(petsPath, petsJSON, function(writeErr) {
       if (writeErr) {
         throw writeErr;
       }
@@ -55,7 +59,7 @@ else if (cmd === "create") {
   });
 }
 else if (cmd === "update") {
-  fs.readFile('./pets.json', 'utf8', function(err, data) {
+  fs.readFile(petsPath, 'utf8', function(err, data) {
     if (err) {
       throw err;
     }
@@ -75,7 +79,7 @@ else if (cmd === "update") {
 
     var petsJSON = JSON.stringify(pets);
 
-    fs.writeFile('./pets.json', petsJSON, function(writeErr) {
+    fs.writeFile(petsPath, petsJSON, function(writeErr) {
       if (writeErr) {
         throw writeErr;
       }
@@ -85,7 +89,7 @@ else if (cmd === "update") {
   });
 }
 else if (cmd === "destroy") {
-  fs.readFile('./pets.json', 'utf8', function(err, data) {
+  fs.readFile(petsPath, 'utf8', function(err, data) {
     if (err) {
       throw err;
     }
@@ -101,7 +105,7 @@ else if (cmd === "destroy") {
 
     var petsJSON = JSON.stringify(pets);
 
-    fs.writeFile('./pets.json', petsJSON, function(writeErr) {
+    fs.writeFile(petsPath, petsJSON, function(writeErr) {
       if (writeErr) {
         throw writeErr;
       }
